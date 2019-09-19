@@ -59,19 +59,11 @@ for i in range(len(tks)):
     getDataIntoDict(tks[i]+'.csv', allprices)
 
 
-print("IBM:MSFT = ",corellation(allprices['IBM'], allprices['MSFT']))
-print("IBM:GOOG = ",corellation(allprices['IBM'], allprices['GOOG']))
-print("IBM:AAPL = ",corellation(allprices['IBM'], allprices['AAPL']))
-print("IBM:AAPL = ",corellation(allprices['IBM'], allprices['AAPL']))
-print("IBM:AMZN = ",corellation(allprices['IBM'], allprices['AMZN']))
-print("IBM:FB = ",corellation(allprices['IBM'], allprices['FB']))
-print("MSFT:GOOG = ",corellation(allprices['MSFT'], allprices['GOOG']))
-print("MSFT:AAPL = ",corellation(allprices['MSFT'], allprices['AAPL']))
-print("MSFT:AMZN = ",corellation(allprices['MSFT'], allprices['AMZN']))
-print("MSFT:FB = ",corellation(allprices['MSFT'], allprices['FB']))
-print("GOOG:AAPL = ",corellation(allprices['GOOG'], allprices['AAPL']))
-print("GOOG:AMZN = ",corellation(allprices['GOOG'], allprices['AMZN']))
-print("GOOG:FB = ",corellation(allprices['GOOG'], allprices['FB']))
-print("AAPL:AMZN = ",corellation(allprices['AAPL'], allprices['AMZN']))
-print("AAPL:AMZN = ",corellation(allprices['AAPL'], allprices['FB']))
-print("AMZN:FB = ",corellation(allprices['AMZN'], allprices['FB']))
+def returnCombs(item, list):
+    for i in range(len(list)):
+        if(item != list[i]):
+            # print(item, ":" ,list[i])
+            print(item+":"+list[i],corellation(allprices[item], allprices[list[i]]))
+for i in range(len(tks)):
+    returnCombs(tks[i], tks[i:])
+
