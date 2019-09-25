@@ -1,5 +1,6 @@
 allprices = {}
 tks = ['IBM', 'MSFT', 'GOOG', 'AAPL', 'AMZN', 'FB']
+results = {}
 
 def getDataIntoDict(file, dict):
 
@@ -28,8 +29,15 @@ def corellation(X, Y):
 
 [getDataIntoDict(tks[i]+'.csv', allprices) for i in range(len(tks))]
 
-def returnCombs(item, list):
-    [print(item+":"+list[i]+" = ",corellation(allprices[item], allprices[list[i]])) for i in range(len(list)) if(item != list[i])]
-
+def returnCombs(item, list, results):
+    
+    for i in range(len(list)):
+        if(item != list[i]):
+            results.update({item+":"+list[i] : corellation(allprices[item], allprices[list[i]])})
+    
 for i in range(len(tks)):
-    returnCombs(tks[i], tks[i:])
+    returnCombs(tks[i], tks[i:], results)
+
+final_result = sorted(results.items(), key=lambda x: x[1], reverse=True)
+for key, value in final_result:
+    print(key, value)
